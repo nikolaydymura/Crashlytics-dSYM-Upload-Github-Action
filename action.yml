@@ -12,7 +12,7 @@ runs:
   steps:
     - name: Upload dSYM artifact to crashlytics
       run: |
-        echo '${{ inputs.google-plist-content }}' > './.GoogleService-Info.plist'
-        ./upload-symbols -gsp ./.GoogleService-Info.plist -p ios ${{ inputs.dsym-path }}
-        rm ./.GoogleService-Info.plist
+        echo '${{ inputs.google-plist-content }}' > '${{ github.action_path }}/.GoogleService-Info.plist'
+        ${{ github.action_path }}/upload-symbols -gsp ${{ github.action_path }}/.GoogleService-Info.plist -p ios ${{ inputs.dsym-path }}
+        rm ${{ github.action_path }}/.GoogleService-Info.plist
       shell: bash
